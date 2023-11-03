@@ -4,23 +4,21 @@ const functions=document.querySelectorAll('.functions');
 const final = document.querySelectorAll('.o');
 
 //convert C to AC if soln is empty
-// try to equate class name ,while putting signs on the webpage
 
-// console.log('chalra');
-// final.forEach((item)=>{
-//     item.addEventListener('click',(e)=>{
-//     console.log(typeof(e.target.textContent));
-//     })
-// });
-
-let a=0,b=0 ,ans ;
-let sign;
+let a=0,b=0 ,ans, sign ;
 
 numbers.forEach((item) => {
     item.addEventListener('click',(e)=>{
-        a = sol.textContent;
+        if(
+            sol.textContent.charAt(sol.textContent.length-1)=='+' ||
+            sol.textContent.charAt(sol.textContent.length-1)=='-' ||
+            sol.textContent.charAt(sol.textContent.length-1)=='*' ||
+            sol.textContent.charAt(sol.textContent.length-1)=='/'
+        ){
+            a=0;
+        }
         a=10*a + Number(e.target.textContent);
-        sol.textContent= a;
+        sol.textContent+=Number(e.target.textContent);
     })
 })
 
@@ -41,7 +39,7 @@ final.forEach((item)=>{
             if(sign=='Divide'){
                ans=b/a;
             }
-            sol.textContent= ans;
+            sol.textContent= Number(ans);
         }
 
         if(e.target.textContent==" C "){
@@ -50,15 +48,24 @@ final.forEach((item)=>{
     })
 })
 
-    
 functions.forEach((item)=>{
     item.addEventListener('click',(e)=>{
         b=sol.textContent;
-        sol.textContent='0';
+        if(e.target.textContent=='Add'){
+            sol.textContent+='+';
+        }
+        if(e.target.textContent=='Subtract'){
+            sol.textContent+='-';
+        }
+        if(e.target.textContent=='Multiply'){
+            sol.textContent+='*';
+        }
+        if(e.target.textContent=='Divide'){
+            sol.textContent+='/';
+        }
         sign=e.target.textContent;
     })
 })
-
 
 
 
